@@ -1,0 +1,246 @@
+/* Basic CSS Rest */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: inherit;
+}
+
+body {
+  background-color: #F5F5F5;
+}
+
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  max-width: 1440px;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+
+.heading-size-1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.heading-size-2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 3px solid black;
+}
+
+.cards {
+  margin-bottom: 3rem;
+}
+
+.card {
+  border-radius: 0.25rem;
+  -webkit-box-shadow: 2px 1px 3px 0 rgba(0, 0, 0, .5);
+          box-shadow: 2px 1px 3px 0 rgba(0, 0, 0, .5);
+  color:  #333333;
+}
+
+.card:hover {
+  -webkit-box-shadow: 2px 1px 3px 0 rgba(0, 0, 0, .8);
+          box-shadow: 2px 1px 3px 0 rgba(0, 0, 0, .8);
+}
+
+/* If Grids not supported cards will display in a single column */
+.card + .card {
+  margin-top: 1.5rem;
+}
+
+.card, .card .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+
+.card .text {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 100%;
+  max-width: 65ch;
+  padding: 0.5rem;
+  background: white;
+}
+
+.card .text p {
+  line-height: 1.5;
+  letter-spacing: 0.12rem;
+}
+
+/* Target Internet Explorer due to lack grid support */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .cards > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-flex: wrap;
+        -ms-flex: wrap;
+            flex: wrap;
+  }
+
+  .card + .card {
+    margin-top: 0;
+ }
+
+ .card {
+   margin-right: 1.5rem;
+ }
+}
+
+@supports (display: grid) {
+  .cards > ul {
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45ch, 1fr));
+    grid-gap: 1.5rem;
+  }
+
+  .card + .card {
+     margin-top: 0;
+  }
+}
+
+/* Needed for IE10 to stop the hover effect going wild! */
+.card h2 {
+  position: relative;
+}
+
+.card h2 a {
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.card a {
+  position: relative;
+  z-index: 5;
+}
+
+.card a:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+  background-color: black;
+  bottom: -0.2rem;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.card-3 a:after {
+  height: 100%;
+  bottom: 0;
+  top: 0;
+}
+
+.card:hover a:after {
+  width: 100%;
+}
+
+.card-3:hover a {
+  color: white;
+}
+
+.card .img {
+  height: 10rem;
+}
+
+.card .img img {
+  -o-object-fit: cover;
+     object-fit: cover; 
+  height: 100%;
+  width: 100%;
+}
+
+.card-2:hover .img img {
+  opacity: 0.8;
+}
+
+/* Selects any item with a sibling before it */
+.card .text > * + * {
+  margin-top: 0.75rem;
+}
+
+/* Pushed the last element in the .text wrapper to the bottom */
+.card .text :last-child {
+  margin-top: auto;
+}
+
+.cta {
+  color: #c0392b;
+}
+
+.card:hover .cta {
+  text-decoration: underline;
+}
+
+.cards-2 .cta {
+  padding: 1rem;
+  border: 2px solid #c0392b;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1rem;
+  -webkit-transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+.card-2:hover .cta{
+  background-color: #c0392b;
+  color: white;
+}
+
+/* Push down the 2nd last to last element in text to create a bit of gap */
+.card .text :nth-last-child(2) {
+  margin-bottom: 4rem;
+}
+
+.card a:focus {
+  text-decoration: underline;
+}
+
+.card:focus-within {
+    -webkit-box-shadow: 0 0 0 0.25rem;
+            box-shadow: 0 0 0 0.25rem;
+}
+
+.card:focus-within a:focus {
+    text-decoration: none;
+}
+
+.card h2 a:focus {
+  text-decoration: underline;
+}
+
+.card:focus-within h2 a:focus {
+   text-decoration: none;
+}
+
+@media (max-width: 400px) {
+  .cards > ul {
+    grid-gap: 4.5rem;
+  }
+}
